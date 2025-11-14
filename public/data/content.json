@@ -1,0 +1,22 @@
+[
+    "navBar",
+    {
+        "navTitle": "Alexsandra M. Silva",
+        "navItems": [
+            { "text": "Torneios", "link": "./Pages/Torneios.html" },
+            { "text": "Federação Catarinense de Tênis", "link": "/index.html" },
+            { "text": "Vila Oliva", "link": "#" },
+            { "text": "Admin", "link": "./Pages/Admin.html" }
+        ]
+    },
+    {
+        "footer": [
+            {
+                "Title": "Isaacson, W., 2011. Steve Jobs. New York: Simon & Schuster."
+            }
+        ]
+    },
+    {
+        "pageTitle": "Thinker. Creator. Innovator."
+    }
+]
