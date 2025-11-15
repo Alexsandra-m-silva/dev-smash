@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Tennis Tournaments</title>
+    <link rel="stylesheet" href="../assets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <div class="login-card">
+            <div class="tennis-balls">
+                <i class="fas fa-table-tennis"></i>
+            </div>
+            
+            <div class="tennis-icon">
+                <i class="fas fa-trophy"></i>
+                <div class="login-title">Admin Access</div>
+                <div class="login-subtitle">Tennis Tournaments Management</div>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username" class="form-label">
+                        <i class="fas fa-user me-2"></i>Username
+                    </label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="form-control" 
+                        placeholder="Enter your username"
+                        required
+                        autocomplete="username"
+                    >
+                    <div class="input-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">
+                        <i class="fas fa-lock me-2"></i>Password
+                    </label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-control" 
+                        placeholder="Enter your password"
+                        required
+                        autocomplete="current-password"
+                    >
+                    <div class="input-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-login" id="loginBtn">
+                    <i class="fas fa-sign-in-alt me-2"></i>
+                    <span class="btn-text">Login</span>
+                </button>
+
+                <button type="button" class="btn-back" onclick="goBack()">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Back
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+    
+    <script>
+        // Login form functionality
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const loginBtn = document.getElementById('loginBtn');
+            const btnText = loginBtn.querySelector('.btn-text');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Add loading state
+            loginBtn.classList.add('loading');
+            btnText.textContent = 'Authenticating...';
+            
+            // Simulate authentication (replace with actual authentication logic)
+            setTimeout(() => {
+                // Remove loading state
+                loginBtn.classList.remove('loading');
+                btnText.textContent = 'Login';
+                
+                // Basic validation (replace with proper authentication)
+                if (username && password) {
+                    // Success - redirect to admin dashboard
+                    alert('Login successful! Redirecting to admin dashboard...');
+                    // window.location.href = '/admin/dashboard.html';
+                } else {
+                    // Error handling
+                    alert('Please enter both username and password.');
+                    
+                    // Shake animation for error
+                    document.querySelector('.login-card').style.animation = 'shake 0.5s ease-in-out';
+                    setTimeout(() => {
+                        document.querySelector('.login-card').style.animation = '';
+                    }, 500);
+                }
+            }, 1500);
+        });
+        
+        // Back button functionality
+        function goBack() {
+            // Check if there's a previous page in history
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // Fallback to home page
+                window.location.href = '/index.html';
+            }
+        }
+        
+        // Auto-focus on username field
+        window.addEventListener('load', function() {
+            document.getElementById('username').focus();
+        });
+        
+        // Enter key navigation between fields
+        document.getElementById('username').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('password').focus();
+            }
+        });
+        
+        // Show/hide password functionality (optional enhancement)
+        function togglePassword() {
+            const passwordField = document.getElementById('password');
+            const icon = passwordField.nextElementSibling.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                icon.classList.remove('fa-lock');
+                icon.classList.add('fa-unlock');
+            } else {
+                passwordField.type = 'password';
+                icon.classList.remove('fa-unlock');
+                icon.classList.add('fa-lock');
+            }
+        }
+        
+        // Add click listener to password icon for toggle functionality
+        document.querySelector('.form-group:last-of-type .input-icon').addEventListener('click', togglePassword);
+        document.querySelector('.form-group:last-of-type .input-icon').style.cursor = 'pointer';
+    </script>
+</body>
+</html>
